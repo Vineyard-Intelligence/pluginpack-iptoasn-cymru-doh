@@ -1,0 +1,96 @@
+{
+  "identifier": "run.vineyard.pluginpacks.iptoasn_cymru_doh",
+  "content_type": "vineyard:pluginpack",
+  "name": "IP to ASN (Team Cymru - DoH Based)",
+  "version": "1.0.0",
+  "description": "Enriches IP Address nodes with their announcing AS (number + name) and country, via Team Cymru over DNS-over-HTTPS. No server required.",
+  "author": {
+    "name": "vineyard-run",
+    "url": "https://github.com/vineyard-run"
+  },
+  "license": "MIT",
+  "icon": "waypoints",
+  "platforms": {
+    "primary": "web",
+    "web": {
+      "runtime": "sandbox-js",
+      "entry": "dist/iptoasn-cymru-doh.js"
+    }
+  },
+  "distribution": {
+    "kind": "git",
+    "repository": "https://github.com/Vineyard-Intelligence/pluginpack-iptoasn-cymru-doh",
+    "ref": "v1.0.0",
+    "path": "plugins/iptoasn-cymru-doh.manifest.json"
+  },
+  "plugins": [
+    {
+      "identifier": "run.vineyard.plugins.ip_to_asn",
+      "content_type": "vineyard:plugin",
+      "name": "IP → ASN",
+      "version": "1.0.0",
+      "description": "Resolves the announcing AS (number + name) of each selected IP via Team Cymru over DoH, adds/reuses the Autonomous System node, links it (\"announced by\"), and fills the IP's ASN.",
+      "icon": "waypoints",
+      "platforms": {
+        "primary": "web",
+        "web": {
+          "runtime": "sandbox-js",
+          "entry": "inline"
+        }
+      },
+      "io": {
+        "consumes": [
+          { "typepack": "run.vineyard.typepacks.infrastructure", "category": "infrastructure", "name": "ip_address" }
+        ],
+        "produces": [
+          { "typepack": "run.vineyard.typepacks.infrastructure", "category": "infrastructure", "name": "autonomous_system" }
+        ]
+      },
+      "scopes": {
+        "graph": ["node:read", "node:create", "node:update", "edge:create"],
+        "network": [
+          { "endpoint": "https://cloudflare-dns.com/dns-query", "methods": ["GET"], "purpose": "Resolve IP→ASN over DNS-over-HTTPS (Team Cymru)." },
+          { "endpoint": "https://dns.google/resolve", "methods": ["GET"], "purpose": "Fallback DoH resolver." }
+        ]
+      },
+      "lifecycle": {
+        "persistence": "opt-in",
+        "controls": ["progress", "cancel"],
+        "progress": "determinate"
+      }
+    },
+    {
+      "identifier": "run.vineyard.plugins.ip_to_country",
+      "content_type": "vineyard:plugin",
+      "name": "IP → Country",
+      "version": "1.0.0",
+      "description": "Fills the country code of each selected IP from its announcing prefix (Team Cymru over DoH). Updates the field only — adds no node.",
+      "icon": "flag",
+      "platforms": {
+        "primary": "web",
+        "web": {
+          "runtime": "sandbox-js",
+          "entry": "inline"
+        }
+      },
+      "io": {
+        "consumes": [
+          { "typepack": "run.vineyard.typepacks.infrastructure", "category": "infrastructure", "name": "ip_address" }
+        ],
+        "produces": []
+      },
+      "scopes": {
+        "graph": ["node:read", "node:update"],
+        "network": [
+          { "endpoint": "https://cloudflare-dns.com/dns-query", "methods": ["GET"], "purpose": "Resolve IP→country over DoH (Team Cymru)." },
+          { "endpoint": "https://dns.google/resolve", "methods": ["GET"], "purpose": "Fallback DoH resolver." }
+        ]
+      },
+      "lifecycle": {
+        "persistence": "opt-in",
+        "controls": ["progress", "cancel"],
+        "progress": "determinate"
+      }
+    }
+  ]
+}
