@@ -14,7 +14,7 @@
     "primary": "web",
     "web": {
       "runtime": "sandbox-js",
-      "entry": "dist/iptoasn-cymru-doh.js"
+      "entry": "dist/pack.mjs"
     }
   },
   "distribution": {
