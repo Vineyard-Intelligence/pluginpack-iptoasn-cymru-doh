@@ -27,7 +27,7 @@
     {
       "identifier": "run.vineyard.plugins.ip_to_asn",
       "content_type": "vineyard:plugin",
-      "name": "IP → ASN",
+      "name": "IP \u2192 ASN",
       "version": "1.0.0",
       "description": "Resolves the announcing AS (number + name) of each selected IP via Team Cymru over DoH, adds/reuses the Autonomous System node, links it (\"announced by\"), and fills the IP's ASN.",
       "icon": "waypoints",
@@ -35,60 +35,110 @@
         "primary": "web",
         "web": {
           "runtime": "sandbox-js",
-          "entry": "inline"
+          "entry": "dist/pack.mjs"
         }
       },
       "io": {
         "consumes": [
-          { "typepack": "run.vineyard.typepacks.infrastructure", "category": "infrastructure", "name": "ip_address" }
+          {
+            "typepack": "run.vineyard.typepacks.infrastructure",
+            "category": "infrastructure",
+            "name": "ip_address"
+          }
         ],
         "produces": [
-          { "typepack": "run.vineyard.typepacks.infrastructure", "category": "infrastructure", "name": "autonomous_system" }
+          {
+            "typepack": "run.vineyard.typepacks.infrastructure",
+            "category": "infrastructure",
+            "name": "autonomous_system"
+          }
         ]
       },
       "scopes": {
-        "graph": ["node:read", "node:create", "node:update", "edge:create"],
+        "graph": [
+          "node:read",
+          "node:create",
+          "node:update",
+          "edge:create"
+        ],
         "network": [
-          { "endpoint": "https://cloudflare-dns.com/dns-query", "methods": ["GET"], "purpose": "Resolve IP→ASN over DNS-over-HTTPS (Team Cymru)." },
-          { "endpoint": "https://dns.google/resolve", "methods": ["GET"], "purpose": "Fallback DoH resolver." }
+          {
+            "endpoint": "https://cloudflare-dns.com/dns-query",
+            "methods": [
+              "GET"
+            ],
+            "purpose": "Resolve IP\u2192ASN over DNS-over-HTTPS (Team Cymru)."
+          },
+          {
+            "endpoint": "https://dns.google/resolve",
+            "methods": [
+              "GET"
+            ],
+            "purpose": "Fallback DoH resolver."
+          }
         ]
       },
       "lifecycle": {
         "persistence": "opt-in",
-        "controls": ["progress", "cancel"],
+        "controls": [
+          "progress",
+          "cancel"
+        ],
         "progress": "determinate"
       }
     },
     {
       "identifier": "run.vineyard.plugins.ip_to_country",
       "content_type": "vineyard:plugin",
-      "name": "IP → Country",
+      "name": "IP \u2192 Country",
       "version": "1.0.0",
-      "description": "Fills the country code of each selected IP from its announcing prefix (Team Cymru over DoH). Updates the field only — adds no node.",
+      "description": "Fills the country code of each selected IP from its announcing prefix (Team Cymru over DoH). Updates the field only \u2014 adds no node.",
       "icon": "flag",
       "platforms": {
         "primary": "web",
         "web": {
           "runtime": "sandbox-js",
-          "entry": "inline"
+          "entry": "dist/pack.mjs"
         }
       },
       "io": {
         "consumes": [
-          { "typepack": "run.vineyard.typepacks.infrastructure", "category": "infrastructure", "name": "ip_address" }
+          {
+            "typepack": "run.vineyard.typepacks.infrastructure",
+            "category": "infrastructure",
+            "name": "ip_address"
+          }
         ],
         "produces": []
       },
       "scopes": {
-        "graph": ["node:read", "node:update"],
+        "graph": [
+          "node:read",
+          "node:update"
+        ],
         "network": [
-          { "endpoint": "https://cloudflare-dns.com/dns-query", "methods": ["GET"], "purpose": "Resolve IP→country over DoH (Team Cymru)." },
-          { "endpoint": "https://dns.google/resolve", "methods": ["GET"], "purpose": "Fallback DoH resolver." }
+          {
+            "endpoint": "https://cloudflare-dns.com/dns-query",
+            "methods": [
+              "GET"
+            ],
+            "purpose": "Resolve IP\u2192country over DoH (Team Cymru)."
+          },
+          {
+            "endpoint": "https://dns.google/resolve",
+            "methods": [
+              "GET"
+            ],
+            "purpose": "Fallback DoH resolver."
+          }
         ]
       },
       "lifecycle": {
         "persistence": "opt-in",
-        "controls": ["progress", "cancel"],
+        "controls": [
+          "progress",
+          "cancel"
+        ],
         "progress": "determinate"
       }
     }
