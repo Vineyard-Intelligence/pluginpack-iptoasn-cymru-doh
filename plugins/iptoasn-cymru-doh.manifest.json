@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "description": "Enriches IP Address nodes with their announcing AS (number + name) and country, via Team Cymru over DNS-over-HTTPS. No server required.",
   "author": {
-    "name": "vineyard-run",
+    "name": "VINEYARD",
     "url": "https://github.com/vineyard-run"
   },
   "license": "MIT",
