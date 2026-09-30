@@ -27,6 +27,6 @@ Team Cymru recommends the DNS interface for recurring lookups; Cloudflare's reso
 ## Layout
 
 - `plugins/iptoasn-cymru-doh.manifest.json` — the pack manifest (catalog entry source).
-- `dist/` — runnable bundle (see note; not built yet — plugins run as built-ins in-app today).
+- `dist/` — runnable bundle.
 
 Data: Team Cymru IP-to-ASN mapping service — <https://www.team-cymru.com/ip-asn-mapping>.
