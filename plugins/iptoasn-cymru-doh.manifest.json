@@ -2,8 +2,8 @@
   "identifier": "run.vineyard.pluginpacks.iptoasn_cymru_doh",
   "content_type": "vineyard:pluginpack",
   "name": "IP to ASN (Team Cymru - DoH Based)",
-  "version": "1.0.0",
-  "description": "Enriches IP Address nodes with their announcing AS (number + name) and country, via Team Cymru over DNS-over-HTTPS. No server required.",
+  "version": "1.0.1",
+  "description": "IP \u2192 ASN and IP \u2192 Country enrichment for IP Address nodes from Team Cymru's IP-to-ASN mapping.",
   "author": {
     "name": "VINEYARD",
     "url": "https://github.com/Vineyard-Intelligence"
@@ -28,8 +28,8 @@
       "identifier": "run.vineyard.plugins.ip_to_asn",
       "content_type": "vineyard:plugin",
       "name": "IP \u2192 ASN",
-      "version": "1.0.0",
-      "description": "Resolves the announcing AS (number + name) of each selected IP via Team Cymru over DoH, adds/reuses the Autonomous System node, links it (\"announced by\"), and fills the IP's ASN.",
+      "version": "1.0.1",
+      "description": "Resolves the autonomous system announcing each selected IP Address (Team Cymru). Creates an Autonomous System node (number, name, country, registry) linked \"announced by\" and sets the IP's asn (e.g. AS15169).",
       "icon": "waypoints",
       "platforms": {
         "primary": "web",
@@ -91,8 +91,8 @@
       "identifier": "run.vineyard.plugins.ip_to_country",
       "content_type": "vineyard:plugin",
       "name": "IP \u2192 Country",
-      "version": "1.0.0",
-      "description": "Fills the country code of each selected IP from its announcing prefix (Team Cymru over DoH). Updates the field only \u2014 adds no node.",
+      "version": "1.0.1",
+      "description": "Sets each selected IP Address's country_code from Team Cymru's IP-to-ASN data for its announcing prefix. Creates no nodes.",
       "icon": "flag",
       "platforms": {
         "primary": "web",
