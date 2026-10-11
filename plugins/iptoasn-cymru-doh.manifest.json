@@ -2,7 +2,7 @@
   "identifier": "run.vineyard.pluginpacks.iptoasn_cymru_doh",
   "content_type": "vineyard:pluginpack",
   "name": "IP to ASN (Team Cymru - DoH Based)",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "IP \u2192 ASN and IP \u2192 Country enrichment for IP Address nodes from Team Cymru's IP-to-ASN mapping.",
   "author": {
     "name": "VINEYARD",
