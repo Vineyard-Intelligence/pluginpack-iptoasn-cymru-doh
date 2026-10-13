@@ -17,12 +17,6 @@
       "entry": "dist/pack.mjs"
     }
   },
-  "distribution": {
-    "kind": "git",
-    "repository": "https://github.com/Vineyard-Intelligence/pluginpack-iptoasn-cymru-doh",
-    "ref": "v1.0.0",
-    "path": "plugins/iptoasn-cymru-doh.manifest.json"
-  },
   "plugins": [
     {
       "identifier": "run.vineyard.plugins.ip_to_asn",
