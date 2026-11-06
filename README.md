@@ -27,6 +27,17 @@ Team Cymru recommends the DNS interface for recurring lookups; Cloudflare's reso
 ## Layout
 
 - `plugins/iptoasn-cymru-doh.manifest.json` — the pack manifest (catalog entry source).
+- `src/` — the source of the bundle.
 - `dist/` — runnable bundle.
 
 Data: Team Cymru IP-to-ASN mapping service — <https://www.team-cymru.com/ip-asn-mapping>.
+
+## Building from source
+
+`src/` is the source of `dist/pack.mjs`. The build pins esbuild, so the published bundle can be
+checked against the source:
+
+```bash
+node build.mjs
+git diff --exit-code dist/pack.mjs
+```
