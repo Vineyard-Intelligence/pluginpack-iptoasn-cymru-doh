@@ -308,7 +308,7 @@ export default definePluginPack({
     identifier: 'run.vineyard.pluginpacks.iptoasn_cymru_doh',
     content_type: 'vineyard:pluginpack',
     name: 'IP to ASN (Team Cymru - DoH Based)',
-    version: '1.1.1',
+    version: '1.1.2',
     description: "IP → ASN and IP → Country enrichment for IP Address nodes from Team Cymru's IP-to-ASN mapping.",
     plugins: [ipToAsn, ipToCountry],
 });
